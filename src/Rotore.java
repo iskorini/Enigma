@@ -13,9 +13,9 @@ public class Rotore {
 	}
 
 	public void rotate() {
-		char temp = out[25];
-		for (int i = 24; i >= 0; i--) {
-			out[i + 1] = out[i];
+		char temp = out[25];			//salvo l'ultima lettera
+		for (int i = 24; i >= 0; i--) { //sposto di una posizione tutte le altre
+			out[i + 1] = out[i]; 		// l'ultima la metto in testa
 		}
 		out[0] = temp;
 	}
