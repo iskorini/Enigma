@@ -12,7 +12,7 @@ Per sceglierne uno, digitare il rotore prescelto e premere invio.
 Viene richiesta la posizione iniziale di ogni rotore e il programma si aspetta un numero intero tra 0 e 25.
 
 A questo punto è possibile iniziare a codificare il proprio messaggio. 
-Inserire un carattere alla volta, premere INVIO ed annotarsi la relativa codifica.
+Inserire un carattere (solo caratteri alfabetici minuscoli) alla volta, premere INVIO ed annotarsi la relativa codifica.
 Per terminare il messaggio inserire ! e premere INVIO.
 
 Per la decodifica, settare Enigma con le stesse impostazioni usate per la codifica (rotori e posizione iniziale).
