@@ -36,4 +36,30 @@ public class Util {
 		}
 		return res;
 	}
+
+	public static boolean checkRotor(String s) {
+		switch (s) {
+		case "I":
+			return false;
+		case "II":
+			return false;
+		case "III":
+			return false;
+		case "IV":
+			return false;
+		case "V":
+			return false;
+		default:
+			return true;
+		}
+	}
+	
+	public static boolean checkChar(char t){
+		return (int)t < 97 || (int)t > 122;
+	}
+	
+	public static void clearScreen() {  
+	    System.out.print("\033[H\033[2J");  
+	    System.out.flush();  
+	   }  
 }

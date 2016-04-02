@@ -36,26 +36,25 @@ public class Enigma {
 		}
 	}
 
-	public void code(String s) {
-		for (int i = 0; i < s.length(); i++) {
-			rotate(); // rotazione dei rotori
-			char res = plugboard.code(s.charAt(i)); // entra nella plugboard
-			res = rotFast.going(res); // entra nel rotore veloce
-			res = rotMed.going(res); // nel medio
-			res = rotSlow.going(res); // nel lento
-			res = reflector.code(res); // nel reflector
-			res = rotSlow.comeBack(res);// torna nel rotore lento
-			res = rotMed.comeBack(res); // nel medio
-			res = rotFast.comeBack(res);// nel veloce
-			res = plugboard.code(res); // nella plugboard
-			System.out.print(res); // stampa a video il risultato
-			try {
-				Thread.sleep(400); // "velocita' di decodifica"
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public void code(char text) {
+
+		rotate(); // rotazione dei rotori
+		char res = plugboard.code(text); // entra nella plugboard
+		res = rotFast.going(res); // entra nel rotore veloce
+		res = rotMed.going(res); // nel medio
+		res = rotSlow.going(res); // nel lento
+		res = reflector.code(res); // nel reflector
+		res = rotSlow.comeBack(res);// torna nel rotore lento
+		res = rotMed.comeBack(res); // nel medio
+		res = rotFast.comeBack(res);// nel veloce
+		res = plugboard.code(res); // nella plugboard
+		System.out.print(text + " ------> " + res + "\n");
+		/*try {
+			Thread.sleep(400); // "velocita' di decodifica"
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 
 	private void rotate() {
