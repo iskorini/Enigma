@@ -89,7 +89,7 @@ public class Main {
 				text = console.readLine().charAt(0);
 				Util.clearScreen();
 			}
-
+			console.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
