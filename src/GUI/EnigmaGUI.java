@@ -154,12 +154,19 @@ public class EnigmaGUI {
         right_panel.setLayout(new GridLayout(3, 1));
         JLabel label  = new JLabel("Premere Codifica per iniziare il processo");
         JButton start_process = new JButton("Codifica");
-        start_process.addActionListener(e -> {
-            createEnigma();
-        });
+        JButton stop_process = new JButton("Ferma");
+        JPanel buttons = new JPanel();
+        buttons.add(start_process);
+        buttons.add(stop_process);
         JLabel decoded = new JLabel("");
+        final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        start_process.addActionListener(e ->{
+            decoded.setText("");
+            manager.addKeyEventDispatcher(new KeyEventEnigma(createEnigma(), decoded,1 ));
+        });
+        stop_process.addActionListener( e -> manager.removeKeyEventDispatcher(new KeyEventEnigma(1)));
         right_panel.add(label);
-        right_panel.add(start_process);
+        right_panel.add(buttons);
         right_panel.add(decoded);
         return right_panel;
 
