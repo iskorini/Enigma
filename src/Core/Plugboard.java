@@ -1,3 +1,5 @@
+package Core;
+
 public class Plugboard extends Connector{
 
 	public Plugboard(char[] t) {

@@ -1,5 +1,5 @@
-/*
- * Questa classe implementa la macchina Enigma:
+package Core;/*
+ * Questa classe implementa la macchina Core.Enigma:
  * ha bisogno di tre parametri interi che rappresentano di quanti
  * "scatti" spostare in avanti i rotori in partenza.
  */
@@ -15,12 +15,13 @@ public class Enigma {
 	private int k = 0;
 
 	public Enigma(String f, int fast, String m, int med, String s, int slow) {
-		// Inizializzazione di Enigma dai file prescelti
-		plugboard = new Plugboard(Util.readLineN("Plugboard/Plugboard01"));
-		reflector = new Reflector(Util.readLineN("Reflector/Reflector01"));
-		rotFast = new Rotore(Util.readLineN("Rotori/" + f));
-		rotMed = new Rotore(Util.readLineN("Rotori/" + m));
-		rotSlow = new Rotore(Util.readLineN("Rotori/" + s));
+		// Inizializzazione di Core.Enigma dai file prescelti
+		String std_path = System.getProperty("user.dir")+"/src/Core/Files";
+		plugboard = new Plugboard(Util.readLineN(std_path+"/Plugboard/Plugboard01"));
+		reflector = new Reflector(Util.readLineN(std_path+"/Reflector/Reflector01"));
+		rotFast = new Rotore(Util.readLineN(std_path+"/Rotori/" + f));
+		rotMed = new Rotore(Util.readLineN(std_path+"/Rotori/" + m));
+		rotSlow = new Rotore(Util.readLineN(std_path+"/Rotori/" + s));
 		setEnigma(fast, med, slow);
 	}
 
@@ -36,8 +37,7 @@ public class Enigma {
 		}
 	}
 
-	public void code(char text) {
-
+	public String code(char text) {
 		rotate(); // rotazione dei rotori
 		char res = plugboard.code(text); // entra nella plugboard
 		res = rotFast.going(res); // entra nel rotore veloce
@@ -48,13 +48,19 @@ public class Enigma {
 		res = rotMed.comeBack(res); // nel medio
 		res = rotFast.comeBack(res);// nel veloce
 		res = plugboard.code(res); // nella plugboard
-		System.out.print(text + " ------> " + res + "\n");
-		/*try {
-			Thread.sleep(400); // "velocita' di decodifica"
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		return String.valueOf(res);
+	}
+
+	/*
+	CODIFICA UN INTERA STRINGA
+	 */
+	public String code(String s) {
+		String final_result = "";
+		for (int i = 0; i < s.length(); i++) {
+			String res = this.code(s.charAt(i));
+			final_result+=res;
+		}
+		return final_result;
 	}
 
 	private void rotate() {

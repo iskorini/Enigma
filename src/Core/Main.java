@@ -1,3 +1,5 @@
+package Core;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,6 @@ public class Main {
 
 		BufferedReader console = new BufferedReader(new InputStreamReader(
 				System.in));
-
 		try {
 			Util.clearScreen();
 			
@@ -85,7 +86,7 @@ public class Main {
 					Util.clearScreen();
 				}
 				Util.clearScreen();
-				e.code(text);
+				System.out.print(text + " ------> " + e.code(text) + "\n");
 				text = console.readLine().charAt(0);
 				Util.clearScreen();
 			}

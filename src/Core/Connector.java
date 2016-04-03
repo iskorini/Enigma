@@ -1,4 +1,4 @@
-/*
+package Core;/*
  * Con questa classe vengono rappresentati sia la plugboard che il reflector
  */
 

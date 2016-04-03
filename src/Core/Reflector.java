@@ -1,3 +1,5 @@
+package Core;
+
 public class Reflector extends Connector {
 
 	public Reflector(char[] t) {
