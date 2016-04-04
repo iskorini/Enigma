@@ -158,13 +158,20 @@ public class EnigmaGUI {
         JPanel buttons = new JPanel();
         buttons.add(start_process);
         buttons.add(stop_process);
+        stop_process.setEnabled(false);
         JLabel decoded = new JLabel("");
         final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         start_process.addActionListener(e ->{
             decoded.setText("");
             manager.addKeyEventDispatcher(new KeyEventEnigma(createEnigma(), decoded,1 ));
+            stop_process.setEnabled(true);
+            start_process.setEnabled(false);
         });
-        stop_process.addActionListener( e -> manager.removeKeyEventDispatcher(new KeyEventEnigma(1)));
+        stop_process.addActionListener( e -> {
+        	manager.removeKeyEventDispatcher(new KeyEventEnigma(1));
+        	start_process.setEnabled(true);
+        	stop_process.setEnabled(false);
+        });
         right_panel.add(label);
         right_panel.add(buttons);
         right_panel.add(decoded);
