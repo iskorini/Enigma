@@ -1,5 +1,9 @@
 package Core;
 
+/**
+ * Created by marcoburacchi on 30/03/16.
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

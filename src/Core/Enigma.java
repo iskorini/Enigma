@@ -1,4 +1,8 @@
-package Core;/*
+package Core;
+/**
+ * Created by marcoburacchi on 30/03/16.
+ */
+/*
  * Questa classe implementa la macchina Core.Enigma:
  * ha bisogno di tre parametri interi che rappresentano di quanti
  * "scatti" spostare in avanti i rotori in partenza.

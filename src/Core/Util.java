@@ -1,4 +1,10 @@
-package Core;/*
+package Core;
+
+/**
+ * Created by marcoburacchi on 30/03/16.
+ */
+
+/*
  * Classe di utilita'
  */
 

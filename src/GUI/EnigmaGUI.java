@@ -76,7 +76,7 @@ public class EnigmaGUI {
         TitledBorder title = BorderFactory.createTitledBorder("Impostazioni");
         left_panel.setBorder(title);
         left_panel.setLayout(new GridLayout(4, 3));
-        String[] rotor_list =  {"Rotore 1", "Rotore 2", "Rotore 3", "Rotore 4", "Rotore 5"};
+        String[] rotor_list =  {"I", "II", "III", "IV", "V"};
         /*
         JComboBox for selection of Rotors
          */
