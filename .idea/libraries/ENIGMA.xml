@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ENIGMA">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ENIGMA.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

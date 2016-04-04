@@ -3,7 +3,7 @@ Estrarre il file jar e le cartelle con i file di configurazione.
 Dal terminale eseguire il file enigma.jar con il comando: 
 java -jar enigma.jar (le cartelle con i file di configurazione devono essere nella stessa directory del file .jar)
 
-All'avvio, Enigma dovrà essere configurata.
+All'avvio, Core.Enigma dovrà essere configurata.
 
 Viene richiesto di scegliere il rotore veloce, quello lento e quello medio.
 I rotori disponibili sono I II III IV e V (sempre maiuscoli).
@@ -15,6 +15,6 @@ A questo punto è possibile iniziare a codificare il proprio messaggio.
 Inserire un carattere (solo caratteri alfabetici minuscoli) alla volta, premere INVIO ed annotarsi la relativa codifica.
 Per terminare il messaggio inserire ! e premere INVIO.
 
-Per la decodifica, settare Enigma con le stesse impostazioni usate per la codifica (rotori e posizione iniziale).
+Per la decodifica, settare Core.Enigma con le stesse impostazioni usate per la codifica (rotori e posizione iniziale).
 Inserire un carattere alla volta del messaggio codificato, premere INVIO ed annotarsi la relativa decodifica.
 Per terminare la decodifica inserire ! e premere INVIO.

@@ -1,5 +1,5 @@
-/*
- * Questa classe implementa i rotori di Enigma
+package Core;/*
+ * Questa classe implementa i rotori di Core.Enigma
  */
 
 public class Rotore {

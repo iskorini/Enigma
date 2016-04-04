@@ -1,4 +1,4 @@
-/*
+package Core;/*
  * Classe di utilita'
  */
 
