@@ -51,13 +51,13 @@ public class Enigma {
 	}
 
 	public void setGrundstellung(char fast, char med, char slow) {
-		for (int i = 0; i < Util.convertLetter(fast); i++) {
+		while (rotFast.screen() != fast) {
 			rotFast.rotateRotor();
 		}
-		for (int i = 0; i < Util.convertLetter(med); i++) {
+		while (rotMed.screen() != med) {
 			rotMed.rotateRotor();
 		}
-		for (int i = 0; i < Util.convertLetter(slow); i++) {
+		while (rotSlow.screen() != slow) {
 			rotSlow.rotateRotor();
 		}
 	}

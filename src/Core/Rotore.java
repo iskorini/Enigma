@@ -41,6 +41,10 @@ public class Rotore {
 			ring[0] = temp;
 		}
 	}
+	
+	public char screen(){
+		return out[0];
+	}
 
 	public char going(char a) {
 		return out[Util.convertLetter(a)];
