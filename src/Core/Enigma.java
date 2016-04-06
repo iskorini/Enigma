@@ -1,14 +1,18 @@
 package Core;
+
 /**
  * Created by marcoburacchi on 30/03/16.
  */
 /*
- * Questa classe implementa la macchina Core.Enigma:
- * ha bisogno di tre parametri interi che rappresentano di quanti
- * "scatti" spostare in avanti i rotori in partenza.
+ * Questa classe implementa la macchina Core.Enigma: ha bisogno di tre parametri
+ * interi che rappresentano di quanti "scatti" spostare in avanti i rotori in
+ * partenza.
  */
 
 public class Enigma {
+
+	// Inizializzazione di Core.Enigma dai file prescelti
+	String std_path = System.getProperty("user.dir") + "/src/Core/Files";
 
 	private Plugboard plugboard;
 	private Rotore rotFast;
@@ -18,26 +22,43 @@ public class Enigma {
 	private int j = 0;
 	private int k = 0;
 
-	public Enigma(String f, int fast, String m, int med, String s, int slow) {
-		// Inizializzazione di Core.Enigma dai file prescelti
-		String std_path = System.getProperty("user.dir")+"/src/Core/Files";
-		plugboard = new Plugboard(Util.readLineN(std_path+"/Plugboard/Plugboard01"));
-		reflector = new Reflector(Util.readLineN(std_path+"/Reflector/Reflector01"));
-		rotFast = new Rotore(Util.readLineN(std_path+"/Rotori/" + f));
-		rotMed = new Rotore(Util.readLineN(std_path+"/Rotori/" + m));
-		rotSlow = new Rotore(Util.readLineN(std_path+"/Rotori/" + s));
-		setEnigma(fast, med, slow);
+	public Enigma(String f, int ringFast, String m, int ringMed, String s,
+			int ringSlow) {
+		// Walzenlage - Wheel order
+		setWalzenlage(f, m, s);
+
+		// Ringstellung - Position of the alphabet ring relative rotor wiring
+		setRingstellung(ringFast, ringMed, ringSlow);
+
+		// Steckerverbindungen - Connections of the plugs in the plugboard
+		plugboard = new Plugboard();
+
+		// Reflector
+		reflector = new Reflector(Util.readLineN(std_path
+				+ "/Reflector/Reflector01"));
 	}
 
-	private void setEnigma(int fast, int med, int slow) {
-		for (int i = 0; i < fast; i++) {
-			rotFast.rotate();
+	private void setWalzenlage(String f, String m, String s) {
+		rotFast = new Rotore(Util.readLineN(std_path + "/Rotori/" + f));
+		rotMed = new Rotore(Util.readLineN(std_path + "/Rotori/" + m));
+		rotSlow = new Rotore(Util.readLineN(std_path + "/Rotori/" + s));
+	}
+
+	private void setRingstellung(int ringFast, int ringMed, int ringSlow) {
+		rotFast.rotateRing(ringFast);
+		rotMed.rotateRing(ringMed);
+		rotSlow.rotateRing(ringSlow);
+	}
+
+	public void setGrundstellung(char fast, char med, char slow) {
+		for (int i = 0; i < Util.convertLetter(fast); i++) {
+			rotFast.rotateRotor();
 		}
-		for (int i = 0; i < med; i++) {
-			rotMed.rotate();
+		for (int i = 0; i < Util.convertLetter(med); i++) {
+			rotMed.rotateRotor();
 		}
-		for (int i = 0; i < slow; i++) {
-			rotSlow.rotate();
+		for (int i = 0; i < Util.convertLetter(slow); i++) {
+			rotSlow.rotateRotor();
 		}
 	}
 
@@ -56,25 +77,25 @@ public class Enigma {
 	}
 
 	/*
-	CODIFICA UN INTERA STRINGA
+	 * CODIFICA UN INTERA STRINGA
 	 */
 	public String code(String s) {
 		String final_result = "";
 		for (int i = 0; i < s.length(); i++) {
-			String res = this.code(s.charAt(i));
-			final_result+=res;
+			String res = code(s.charAt(i));
+			final_result += res;
 		}
 		return final_result;
 	}
 
 	private void rotate() {
-		rotFast.rotate();
+		rotFast.rotateRotor();
 		j++;
 		if (j % 26 == 0) {
-			rotMed.rotate();
+			rotMed.rotateRotor();
 			k++;
 			if (k % 26 == 0) {
-				rotSlow.rotate();
+				rotSlow.rotateRotor();
 			}
 		}
 	}

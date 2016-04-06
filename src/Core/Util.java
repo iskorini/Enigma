@@ -64,8 +64,25 @@ public class Util {
 		return (int)t < 97 || (int)t > 122;
 	}
 	
+	public static boolean checkInt(String n){
+		for(int i = 0; i < n.length(); i++){
+			if (n.charAt(i) < 48 || n.charAt(i) > 57){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public static void clearScreen() {  
 	    System.out.print("\033[H\033[2J");  
 	    System.out.flush();  
-	   }  
+	   }
+	
+	public static int searchLetter(char[] t, char a){
+		int i = 0;
+		while (t[i] != a) {
+			i++;
+		}
+		return i;
+	}
 }
