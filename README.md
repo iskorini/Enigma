@@ -1,6 +1,6 @@
 Estrarre il file jar e la cartella src contenente i file di configurazione(devono essere nella stessa directory).
 
-Eseguire il file enigma_cli.jar.
+Eseguire il file enigma_cli.jar da riga di comando con il comando java -jar enigma_cli.jar.
 
 All'avvio, Enigma dovrà essere configurata.
 
