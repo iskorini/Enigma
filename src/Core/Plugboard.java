@@ -22,27 +22,27 @@ public class Plugboard {
 		BufferedReader console = new BufferedReader(new InputStreamReader(
 				System.in));
 		for (int i = 0; i < 10; i++) {
-			System.out.print("Inserire la " + (i+1) + "° " + "coppia di connettori da collegare\n");
+			System.out.print("Enter the " + (i+1) + "° " + "pair of connectors to be connected\n");
 			char a;
 			char b;
 			try {
 				String coppia = console.readLine();
 				while (coppia.length() != 2){
 					Util.clearScreen();
-					System.out.print("Inserito un numero di caratteri errato\n");
-					System.out.print("Inserire la " + (i+1) + "° " + "coppia di connettori da collegare\n");
+					System.out.print("Please insert two letters\n");
+					System.out.print("Enter the " + (i+1) + "° " + "pair of connectors to be connected\n");
 					coppia = console.readLine();
 				}
 				a = coppia.charAt(0);
 				b = coppia.charAt(1);
 				while (Util.checkChar(a) || Util.checkChar(b)) {
 					Util.clearScreen();
-					System.out.print("Inserito carattere illegale\n");
-					System.out.print("Inserire la " + (i+1) + "° " + "coppia di connettori da collegare\n");
+					System.out.print("Please insert two letters\n");
+					System.out.print("Enter the " + (i+1) + "° " + "pair of connectors to be connected\n");
 					coppia = console.readLine();
 					while (coppia.length() != 2){
-						System.out.print("Inserito un numero di caratteri errato\n");
-						System.out.print("Inserire la " + (i+1) + "° " + "coppia di connettori da collegare\n");
+						System.out.print("Please insert two letters\n");
+						System.out.print("Enter the " + (i+1) + "° " + "pair of connectors to be connected\n");
 						coppia = console.readLine();
 					}
 					a = coppia.charAt(0);

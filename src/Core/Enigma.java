@@ -64,16 +64,21 @@ public class Enigma {
 
 	public String code(char text) {
 		rotate(); // rotazione dei rotori
-		char res = plugboard.code(text); // entra nella plugboard
-		res = rotFast.going(res); // entra nel rotore veloce
-		res = rotMed.going(res); // nel medio
-		res = rotSlow.going(res); // nel lento
-		res = reflector.code(res); // nel reflector
-		res = rotSlow.comeBack(res);// torna nel rotore lento
-		res = rotMed.comeBack(res); // nel medio
-		res = rotFast.comeBack(res);// nel veloce
-		res = plugboard.code(res); // nella plugboard
-		return String.valueOf(res);
+		/*
+		 * Il return implementa questa serie di comandi
+		 * char res = plugboard.code(text); // entra nella plugboard 
+		 * res = rotFast.going(res); // entra nel rotore veloce
+		 * res = rotMed.going(res); // nel medio 
+		 * res = rotSlow.going(res); // nel lento 
+		 * res = reflector.code(res); // nel reflector 
+		 * res = rotSlow.comeBack(res);// torna nel rotore lento 
+		 * res = rotMed.comeBack(res); // nel medio 
+		 * res = rotFast.comeBack(res);// nel veloce 
+		 * res = plugboard.code(res); // nella plugboard
+		 */
+		return String.valueOf(plugboard.code(rotFast.comeBack(rotMed
+				.comeBack(rotSlow.comeBack(reflector.code(rotSlow.going(rotMed
+						.going(rotFast.going(plugboard.code(text))))))))));
 	}
 
 	/*
