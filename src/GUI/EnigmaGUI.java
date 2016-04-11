@@ -49,7 +49,54 @@ public class EnigmaGUI {
     protected int start_first_rotor = 0;
     protected int start_second_rotor = 0;
     protected int start_third_rotor = 0;
+
     public EnigmaGUI () {
+
+    protected char start_first_letter, start_second_letter, start_third_letter;
+    
+    /**
+	 * @return the start_first_letter
+	 */
+	public char getStart_first_letter() {
+		return start_first_letter;
+	}
+
+	/**
+	 * @param start_first_letter the start_first_letter to set
+	 */
+	public void setStart_first_letter(char start_first_letter) {
+		this.start_first_letter = start_first_letter;
+	}
+
+	/**
+	 * @return the start_second_letter
+	 */
+	public char getStart_second_letter() {
+		return start_second_letter;
+	}
+
+	/**
+	 * @param start_second_letter the start_second_letter to set
+	 */
+	public void setStart_second_letter(char start_second_letter) {
+		this.start_second_letter = start_second_letter;
+	}
+
+	/**
+	 * @return the start_third_letter
+	 */
+	public char getStart_third_letter() {
+		return start_third_letter;
+	}
+
+	/**
+	 * @param start_third_letter the start_third_letter to set
+	 */
+	public void setStart_third_letter(char start_third_letter) {
+		this.start_third_letter = start_third_letter;
+	}
+
+	public EnigmaGUI () {
         this.createGUI();
         this.addComponent();
         principal_frame.pack();
@@ -75,38 +122,49 @@ public class EnigmaGUI {
         JPanel left_panel = new JPanel();
         TitledBorder title = BorderFactory.createTitledBorder("Impostazioni");
         left_panel.setBorder(title);
-        left_panel.setLayout(new GridLayout(4, 3));
-        String[] rotor_list =  {"Rotore 1", "Rotore 2", "Rotore 3", "Rotore 4", "Rotore 5"};
+        left_panel.setLayout(new GridLayout(4, 4));
+        String[] rotor_list =  {"I", "II", "III", "IV", "V"};
+        String[] merda = new String[]{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+    			"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+    			"x", "y", "z" };
+        List<String> listAlphabet = Arrays.asList(merda);
         /*
         JComboBox for selection of Rotors
          */
-        JComboBox first_rotor = new JComboBox(rotor_list);
-        JComboBox second_rotor = new JComboBox(rotor_list);
-        JComboBox third_rotor = new JComboBox(rotor_list);
-        first_rotor.addActionListener(e1 -> this.setFirst_rotor(getRotor(((JComboBox)e1.getSource()).getSelectedIndex())));
-        second_rotor.addActionListener(e1 -> this.setSecond_rotor(getRotor(((JComboBox)e1.getSource()).getSelectedIndex())));
-        third_rotor.addActionListener(e1 -> this.setThird_rotor(getRotor(((JComboBox)e1.getSource()).getSelectedIndex())));
+        JComboBox<?> first_rotor = new JComboBox<Object>(rotor_list);
+        JComboBox<?> second_rotor = new JComboBox<Object>(rotor_list);
+        JComboBox<?> third_rotor = new JComboBox<Object>(rotor_list);
+        first_rotor.addActionListener(e1 -> this.setFirst_rotor(getRotor(((JComboBox<?>)e1.getSource()).getSelectedIndex())));
+        second_rotor.addActionListener(e1 -> this.setSecond_rotor(getRotor(((JComboBox<?>)e1.getSource()).getSelectedIndex())));
+        third_rotor.addActionListener(e1 -> this.setThird_rotor(getRotor(((JComboBox<?>)e1.getSource()).getSelectedIndex())));
         /*
         JSPinner for selection of start position
          */
         JSpinner first_rotor_start = new JSpinner(new SpinnerNumberModel(0, 0, 25, 1));
         JSpinner second_rotor_start = new JSpinner(new SpinnerNumberModel(0, 0, 25, 1));
         JSpinner third_rotor_start = new JSpinner(new SpinnerNumberModel(0, 0, 25, 1));
+        JSpinner first_rotor_letter = new JSpinner(new SpinnerListModel(listAlphabet));
+        JSpinner second_rotor_letter = new JSpinner(new SpinnerListModel(listAlphabet));
+        JSpinner third_rotor_letter = new JSpinner(new SpinnerListModel(listAlphabet));
         first_rotor_start.addChangeListener(e1 -> this.setStart_first_rotor((int)((JSpinner)e1.getSource()).getValue()));
         second_rotor_start.addChangeListener(e1 -> this.setStart_second_rotor((int)((JSpinner)e1.getSource()).getValue()));
         third_rotor_start.addChangeListener(e1 -> this.setStart_third_rotor((int)((JSpinner)e1.getSource()).getValue()));
+        first_rotor_letter.addChangeListener(e1 -> this.setStart_first_letter((char)((JSpinner)e1.getSource()).getValue()));
         /*
         add component in left JPanel
          */
         left_panel.add(new JLabel("Rotore veloce:"));
         left_panel.add(first_rotor);
         left_panel.add(first_rotor_start);
+        left_panel.add(first_rotor_letter);
         left_panel.add(new JLabel("Rotore medio:"));
         left_panel.add(second_rotor);
         left_panel.add(second_rotor_start);
+        left_panel.add(second_rotor_letter);
         left_panel.add(new JLabel("Rotore lento:"));
         left_panel.add(third_rotor);
         left_panel.add(third_rotor_start);
+        left_panel.add(third_rotor_letter);
         JCheckBox mode = new JCheckBox("Stringa");
         mode.setSelected(true);
         mode.addItemListener(e -> {
@@ -158,13 +216,20 @@ public class EnigmaGUI {
         JPanel buttons = new JPanel();
         buttons.add(start_process);
         buttons.add(stop_process);
+        stop_process.setEnabled(false);
         JLabel decoded = new JLabel("");
         final KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         start_process.addActionListener(e ->{
             decoded.setText("");
             manager.addKeyEventDispatcher(new KeyEventEnigma(createEnigma(), decoded,1 ));
+            stop_process.setEnabled(true);
+            start_process.setEnabled(false);
         });
-        stop_process.addActionListener( e -> manager.removeKeyEventDispatcher(new KeyEventEnigma(1)));
+        stop_process.addActionListener( e -> {
+        	manager.removeKeyEventDispatcher(new KeyEventEnigma(1));
+        	start_process.setEnabled(true);
+        	stop_process.setEnabled(false);
+        });
         right_panel.add(label);
         right_panel.add(buttons);
         right_panel.add(decoded);
